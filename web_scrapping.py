@@ -7,7 +7,7 @@ response = requests.get(url)
 
 soup = BeautifulSoup(response.text, 'html.parser')
 
-print(soup.get_text())
+print(soup.get_text('article', {'class':"body article__body"}))
 
 paragraphs = soup.find_all('p')
 
