@@ -1,12 +1,18 @@
 import requests
 from bs4 import BeautifulSoup
- url = 'dailytrust.com/last-saturday-polls-raised-issues-that-require-immediate-solution-inec/'
+ 
+url = 'https://dailytrust.com/last-saturday-polls-raised-issues-that-require-immediate-solutions-inec/'
 
 response = requests.get(url)
-content = response.content
-soup = BeautifulSoup(content, 'html.parser')
-print(soup.title.get_text())
+
+soup = BeautifulSoup(response.text, 'html.parser')
+
+print(soup.get_text())
 
 paragraphs = soup.find_all('p')
+
+print(soup.title)
+
 for paragraph in paragraphs:
-    print(paragraph.get_text())
+    if not paragraph.find_all('a'):
+        print(paragraph.get_tech())
